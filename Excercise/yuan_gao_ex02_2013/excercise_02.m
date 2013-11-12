@@ -33,7 +33,7 @@ fprintf('The jaccard coeficient of these two movies is:\n%.5f\n',coef);
 %}
 
 %% What are the 5 movies with highest Jaccard coeficient to 'Taxi Driver'?
-%{
+%%{
 movie_a='Taxi Driver (1976)';
 top_rank = 5;
 top_rank_name = zeros(1,top_rank);
@@ -48,13 +48,18 @@ i = 1:length(items);
 i = i(i~=place1);
 for i=i
     coef = check_jacc_coef_between_two( ratings, items, userids, itemids,place1,i);
-            info_container(num2str(coef)) = i;
+    info_container(num2str(coef)) = i;
     if coef > coef_group(1)
-        
+        fprintf('%f',coef);
+        fprintf('\n');
+        fprintf(1,items{info_container(num2str(coef))});
+        fprintf('\n');
         coef_group(1) = coef;
         coef_group = sort(coef_group);
         %top_rank_name(1) = i;
     end  
+
+     
 end 
 coef_group = sort(coef_group)
 fprintf('5 movies with highest Jaccard coeficient to Taxi Driver are :\n');
@@ -180,6 +185,7 @@ for i=i
 end 
 coef_group = sort(coef_group);
 fprintf('5 movies with highest correlation coeficient to Star Wars (1977) are :\n');
+coef_group
 for coef = coef_group
     if coef ~= 0
         fprintf(1,items{info_container(num2str(coef))});
@@ -191,5 +197,4 @@ end
 %}
 
 
-%% (d) Provide some brief thoughts on which similarity measure seems to work `better', in the sense that the 
-%computed similarity matches your intuitive sense of similarity. Explain.
+%% (d) Provide some brief thoughts on which similarity measure seems to work `better', in the sense that the  computed similarity matches your intuitive sense of similarity. Explain.
